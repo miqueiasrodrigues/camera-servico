@@ -10,6 +10,9 @@ public class CameraCreateDTO implements Serializable {
     private String modelo;
     private String marca;
     private String ip;
+    private Integer porta;
+    private String usuario;
+    private String senha;
 
     public String getModelo() {
         return modelo;
@@ -35,16 +38,40 @@ public class CameraCreateDTO implements Serializable {
         this.ip = ip;
     }
 
+    public Integer getPorta() {
+        return porta;
+    }
+
+    public void setPorta(Integer porta) {
+        this.porta = porta;
+    }
+
+    public String getUsuario() {
+        return usuario;
+    }
+
+    public void setUsuario(String usuario) {
+        this.usuario = usuario;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CameraCreateDTO that = (CameraCreateDTO) o;
-        return Objects.equals(modelo, that.modelo) && Objects.equals(marca, that.marca) && Objects.equals(ip, that.ip);
+        return Objects.equals(modelo, that.modelo) && Objects.equals(marca, that.marca) && Objects.equals(ip, that.ip) && Objects.equals(porta, that.porta) && Objects.equals(usuario, that.usuario) && Objects.equals(senha, that.senha);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(modelo, marca, ip);
+        return Objects.hash(modelo, marca, ip, porta, usuario, senha);
     }
 }

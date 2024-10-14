@@ -19,20 +19,21 @@ import java.util.List;
 public class CameraController {
     @Autowired
     private CameraServiceImpl service;
+
+    @GetMapping(
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<List<CameraDTO>> findByAll(){
+        List<CameraDTO> camerasDTO = service.findAll();
+        return ResponseEntity.ok(camerasDTO);
+    }
+
     @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     public ResponseEntity<CameraDTO> findById(@PathVariable(value = "id") Long id){
         CameraDTO cameraDTO = service.findById(id);
         return ResponseEntity.ok(cameraDTO);
-    }
-
-    @GetMapping(
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    public ResponseEntity<List<CameraDTO>> findById(){
-        List<CameraDTO> camerasDTO = service.findAll();
-        return ResponseEntity.ok(camerasDTO);
     }
 
     @PostMapping(

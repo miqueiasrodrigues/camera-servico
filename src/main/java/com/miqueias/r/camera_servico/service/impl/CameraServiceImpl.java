@@ -54,6 +54,7 @@ public class CameraServiceImpl implements CameraService {
         camera.setPorta(mapper.toCamera(cameraDTO).getPorta());
         camera.setUsuario(mapper.toCamera(cameraDTO).getUsuario());
         camera.setSenha(mapper.toCamera(cameraDTO).getSenha());
+        camera.setUsuarioId(mapper.toCamera(cameraDTO).getUsuarioId());
 
         Camera cameraUpdate = repository.save(camera);
 

@@ -27,6 +27,8 @@ public class Camera implements Serializable {
     private String usuario;
     @Column
     private String senha;
+    @Column
+    private Long usuarioId;
 
     public Camera() {
     }
@@ -87,16 +89,24 @@ public class Camera implements Serializable {
         this.senha = senha;
     }
 
+    public Long getUsuarioId() {
+        return usuarioId;
+    }
+
+    public void setUsuarioId(Long usuarioId) {
+        this.usuarioId = usuarioId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Camera camera = (Camera) o;
-        return Objects.equals(id, camera.id) && Objects.equals(modelo, camera.modelo) && Objects.equals(marca, camera.marca) && Objects.equals(ip, camera.ip) && Objects.equals(porta, camera.porta) && Objects.equals(usuario, camera.usuario) && Objects.equals(senha, camera.senha);
+        return Objects.equals(id, camera.id) && Objects.equals(modelo, camera.modelo) && Objects.equals(marca, camera.marca) && Objects.equals(ip, camera.ip) && Objects.equals(porta, camera.porta) && Objects.equals(usuario, camera.usuario) && Objects.equals(senha, camera.senha) && Objects.equals(usuarioId, camera.usuarioId);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, modelo, marca, ip, porta, usuario, senha);
+        return Objects.hash(id, modelo, marca, ip, porta, usuario, senha, usuarioId);
     }
 }

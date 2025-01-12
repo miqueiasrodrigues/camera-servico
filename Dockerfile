@@ -1,11 +1,12 @@
 # Usar a imagem base OpenJDK 17 para ARM64
-FROM arm64v8/openjdk:17-jdk-slim
+#FROM arm64v8/openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim
 
 # Configurar o diretório de trabalho no container
 WORKDIR /app
 
 # Copiar o JAR compilado para o container
-COPY target/camera-servico-0.0.1-SNAPSHOT.jar app.jar
+COPY target/camera-servico-0.1.1-SNAPSHOT.jar app.jar
 
 # Expor a porta que a aplicação irá rodar
 EXPOSE 8200

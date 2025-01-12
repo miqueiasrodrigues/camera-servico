@@ -4,13 +4,16 @@ import com.miqueias.r.camera_servico.utils.enumerate.Dia;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class MonitoramentoCreateDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     private Dia dia;
-    private Long detalheId;
+    private Long cameraId;
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
 
     public Dia getDia() {
         return dia;
@@ -20,24 +23,27 @@ public class MonitoramentoCreateDTO implements Serializable {
         this.dia = dia;
     }
 
-    public Long getDetalheId() {
-        return detalheId;
+    public Long getCameraId() {
+        return cameraId;
     }
 
-    public void setDetalheId(Long detalheId) {
-        this.detalheId = detalheId;
+    public void setCameraId(Long cameraId) {
+        this.cameraId = cameraId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MonitoramentoCreateDTO that = (MonitoramentoCreateDTO) o;
-        return dia == that.dia && Objects.equals(detalheId, that.detalheId);
+    public LocalTime getHoraInicio() {
+        return horaInicio;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(dia, detalheId);
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public LocalTime getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
     }
 }

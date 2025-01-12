@@ -1,10 +1,12 @@
 package com.miqueias.r.camera_servico.domain;
 
 import com.miqueias.r.camera_servico.utils.enumerate.Dia;
+import com.miqueias.r.camera_servico.utils.enumerate.Status;
 import jakarta.persistence.*;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Objects;
 
 
@@ -20,8 +22,12 @@ public class Monitoramento implements Serializable {
     @Enumerated(EnumType.STRING)
     private Dia dia;
     @ManyToOne
-    @JoinColumn(name = "detalhe_id", nullable = false)
-    private Detalhe detalhe;
+    @JoinColumn(name = "camera_id", nullable = false)
+    private Camera camera;
+    @Column(nullable = false)
+    private LocalTime horaInicio;
+    @Column(nullable = false)
+    private LocalTime horaFim;
 
     public Monitoramento() {
     }
@@ -42,12 +48,28 @@ public class Monitoramento implements Serializable {
         this.dia = dia;
     }
 
-    public Detalhe getDetalhe() {
-        return detalhe;
+    public Camera getCamera() {
+        return camera;
     }
 
-    public void setDetalhe(Detalhe detalhe) {
-        this.detalhe = detalhe;
+    public void setCamera(Camera camera) {
+        this.camera = camera;
+    }
+
+    public LocalTime getHoraInicio() {
+        return horaInicio;
+    }
+
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public LocalTime getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
     }
 
     @Override
@@ -55,11 +77,11 @@ public class Monitoramento implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Monitoramento that = (Monitoramento) o;
-        return Objects.equals(id, that.id) && dia == that.dia && Objects.equals(detalhe, that.detalhe);
+        return Objects.equals(id, that.id) && dia == that.dia && Objects.equals(camera, that.camera) && Objects.equals(horaInicio, that.horaInicio) && Objects.equals(horaFim, that.horaFim);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, dia, detalhe);
+        return Objects.hash(id, dia, camera, horaInicio, horaFim);
     }
 }

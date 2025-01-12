@@ -1,7 +1,9 @@
 package com.miqueias.r.camera_servico.controller;
 
+import com.miqueias.r.camera_servico.domain.dto.ToggleDTO;
 import com.miqueias.r.camera_servico.domain.dto.camera.CameraCreateDTO;
 import com.miqueias.r.camera_servico.domain.dto.camera.CameraDTO;
+import com.miqueias.r.camera_servico.domain.dto.monitoramento.MonitoramentoDTO;
 import com.miqueias.r.camera_servico.service.impl.CameraServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,10 +23,11 @@ public class CameraController {
     private CameraServiceImpl service;
 
     @GetMapping(
+            value = "/todos/{usuario_id}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<List<CameraDTO>> findByAll(){
-        List<CameraDTO> camerasDTO = service.findAll();
+    public ResponseEntity<List<CameraDTO>> findByAll(@PathVariable(value = "usuario_id") Long usuarioId){
+        List<CameraDTO> camerasDTO = service.findAll(usuarioId);
         return ResponseEntity.ok(camerasDTO);
     }
 
@@ -43,6 +46,16 @@ public class CameraController {
     public ResponseEntity<CameraDTO> create(@RequestBody CameraCreateDTO cameraCreateDTO){
         CameraDTO cameraCreatedDTO = service.create(cameraCreateDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(cameraCreatedDTO);
+    }
+
+    @PostMapping(
+            value = "/trocar",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<CameraDTO> toggle (@RequestBody ToggleDTO toggleDTO){
+        CameraDTO cameraDTO = service.toggle(toggleDTO);
+        return ResponseEntity.ok(cameraDTO);
     }
 
     @PutMapping(

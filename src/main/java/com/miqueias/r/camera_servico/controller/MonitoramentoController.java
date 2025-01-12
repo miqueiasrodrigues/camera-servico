@@ -11,12 +11,22 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @Controller
 @RequestMapping("api/monitoramento")
 public class MonitoramentoController {
     @Autowired
     private MonitoramentoServiceImpl service;
+
+    @GetMapping(value = "/todos/{cameraId}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    public ResponseEntity<List<MonitoramentoDTO>> findAll(@PathVariable(value = "cameraId") Long cameraId){
+        List<MonitoramentoDTO> monitoramentosDTO = service.findAll(cameraId);
+        return ResponseEntity.ok(monitoramentosDTO);
+    }
     @GetMapping(value = "/{id}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
@@ -33,6 +43,8 @@ public class MonitoramentoController {
         MonitoramentoDTO monitoramentoCreatedDTO = service.create(monitoramentoCreateDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(monitoramentoCreatedDTO);
     }
+
+
 
     @PutMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE,

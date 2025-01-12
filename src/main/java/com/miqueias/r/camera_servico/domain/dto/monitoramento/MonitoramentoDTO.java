@@ -1,18 +1,19 @@
 package com.miqueias.r.camera_servico.domain.dto.monitoramento;
 
-import com.miqueias.r.camera_servico.domain.Detalhe;
 import com.miqueias.r.camera_servico.utils.enumerate.Dia;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
+import java.time.LocalTime;
 
 public class MonitoramentoDTO implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
     private Long id;
     private Dia dia;
-    private Detalhe detalhe;
+    private Long cameraId;
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
 
     public Long getId() {
         return id;
@@ -30,24 +31,27 @@ public class MonitoramentoDTO implements Serializable {
         this.dia = dia;
     }
 
-    public Detalhe getDetalhe() {
-        return detalhe;
+    public Long getCameraId() {
+        return cameraId;
     }
 
-    public void setDetalhe(Detalhe detalhe) {
-        this.detalhe = detalhe;
+    public void setCameraId(Long cameraId) {
+        this.cameraId = cameraId;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MonitoramentoDTO that = (MonitoramentoDTO) o;
-        return Objects.equals(id, that.id) && dia == that.dia && Objects.equals(detalhe, that.detalhe);
+    public LocalTime getHoraInicio() {
+        return horaInicio;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, dia, detalhe);
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
+    }
+
+    public LocalTime getHoraFim() {
+        return horaFim;
+    }
+
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
     }
 }

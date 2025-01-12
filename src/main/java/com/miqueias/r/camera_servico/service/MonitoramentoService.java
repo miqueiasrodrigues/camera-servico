@@ -5,7 +5,10 @@ import com.miqueias.r.camera_servico.domain.dto.monitoramento.MonitoramentoCreat
 import com.miqueias.r.camera_servico.domain.dto.monitoramento.MonitoramentoDTO;
 import com.miqueias.r.camera_servico.domain.dto.monitoramento.MonitoramentoUpdateDTO;
 
+import java.util.List;
+
 public interface MonitoramentoService {
+    List<MonitoramentoDTO> findAll(Long cameraId);
     MonitoramentoDTO findById(Long id);
     MonitoramentoDTO create(MonitoramentoCreateDTO monitoramentoCreateDTO);
     MonitoramentoDTO update(MonitoramentoUpdateDTO monitoramentoUpdateDTO);

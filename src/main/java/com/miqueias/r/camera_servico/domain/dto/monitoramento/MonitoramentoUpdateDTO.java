@@ -4,6 +4,7 @@ import com.miqueias.r.camera_servico.utils.enumerate.Dia;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.time.LocalTime;
 import java.util.Objects;
 
 public class MonitoramentoUpdateDTO implements Serializable {
@@ -11,7 +12,8 @@ public class MonitoramentoUpdateDTO implements Serializable {
     private static final long serialVersionUID = 1L;
     private Long id;
     private Dia dia;
-    private Long detalheId;
+    private LocalTime horaInicio;
+    private LocalTime horaFim;
 
     public Long getId() {
         return id;
@@ -29,13 +31,19 @@ public class MonitoramentoUpdateDTO implements Serializable {
         this.dia = dia;
     }
 
-    public Long getDetalheId() {
-        return detalheId;
+    public LocalTime getHoraInicio() {
+        return horaInicio;
     }
 
-    public void setDetalheId(Long detalheId) {
-        this.detalheId = detalheId;
+    public void setHoraInicio(LocalTime horaInicio) {
+        this.horaInicio = horaInicio;
     }
 
+    public LocalTime getHoraFim() {
+        return horaFim;
+    }
 
+    public void setHoraFim(LocalTime horaFim) {
+        this.horaFim = horaFim;
+    }
 }

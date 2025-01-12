@@ -1,5 +1,6 @@
 package com.miqueias.r.camera_servico.domain;
 
+import com.miqueias.r.camera_servico.utils.enumerate.Status;
 import jakarta.persistence.*;
 
 import java.io.Serial;
@@ -29,6 +30,9 @@ public class Camera implements Serializable {
     private String senha;
     @Column
     private Long usuarioId;
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private Status status;
 
     public Camera() {
     }
@@ -97,16 +101,23 @@ public class Camera implements Serializable {
         this.usuarioId = usuarioId;
     }
 
+    public Status getStatus() {
+        return status;
+    }
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Camera camera = (Camera) o;
-        return Objects.equals(id, camera.id) && Objects.equals(modelo, camera.modelo) && Objects.equals(marca, camera.marca) && Objects.equals(ip, camera.ip) && Objects.equals(porta, camera.porta) && Objects.equals(usuario, camera.usuario) && Objects.equals(senha, camera.senha) && Objects.equals(usuarioId, camera.usuarioId);
+        return Objects.equals(id, camera.id) && Objects.equals(modelo, camera.modelo) && Objects.equals(marca, camera.marca) && Objects.equals(ip, camera.ip) && Objects.equals(porta, camera.porta) && Objects.equals(usuario, camera.usuario) && Objects.equals(senha, camera.senha) && Objects.equals(usuarioId, camera.usuarioId) && status == camera.status;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, modelo, marca, ip, porta, usuario, senha, usuarioId);
+        return Objects.hash(id, modelo, marca, ip, porta, usuario, senha, usuarioId, status);
     }
 }
